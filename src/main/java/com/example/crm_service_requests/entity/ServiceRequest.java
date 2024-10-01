@@ -16,13 +16,13 @@ public class ServiceRequest {
     private Long id;
 
     @Column(name = "type")
-    private String type;
+    private Integer type;
 
     @Column(name = "description")
     private String description;
 
     @Column(name = "location")
-    private String location;
+    private Integer location;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "priority")
@@ -35,14 +35,20 @@ public class ServiceRequest {
     @Column(name = "creation_date")
     private LocalDateTime creationDate = LocalDateTime.now();
 
+    @Column(name = "update_date")
+    private LocalDateTime updateDate;
+
+    @Column(name = "completed_date")
+    private LocalDateTime completedDate;
+
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "observations", columnDefinition = "text")
+    private String observations;
+
     @JoinColumn(name = "created_by_user", nullable = false)
-    private long created_by_user;
-
-    @Column(name = "city")
-    private String city;
-
-    @Column(name = "street")
-    private String street;
+    private long createdByUser;
 
     // Getters and setters
 }

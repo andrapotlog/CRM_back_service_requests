@@ -8,9 +8,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ServiceRequestService {
-    public List<ServiceRequest> getAllServiceRequests(Status status, Priority priority, String city, Long createdBy);
+    public List<ServiceRequest> getAllServiceRequests(boolean isUser, Status status, Priority priority, Integer location, Long createdBy);
     public Optional<ServiceRequest> getServiceRequestById(Long id);
     public ServiceRequest createServiceRequest(ServiceRequest serviceRequest);
-    public ServiceRequest updateServiceRequest(Long id, ServiceRequest serviceRequest);
+    public void updateServiceRequest(ServiceRequest serviceRequest);
     public void deleteServiceRequest(Long id);
+    public void handleServiceRequest(ServiceRequest serviceRequest);
 }

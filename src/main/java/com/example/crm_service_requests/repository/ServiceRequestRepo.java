@@ -15,7 +15,7 @@ public interface ServiceRequestRepo extends JpaRepository<ServiceRequest, Long> 
     @Query("SELECT sr FROM ServiceRequest sr WHERE " +
             "(:status IS NULL OR sr.status = :status) AND " +
             "(:priority IS NULL OR sr.priority = :priority) AND " +
-            "(:createdBy IS NULL OR sr.created_by_user = :createdBy) AND " +
-            "(:city IS NULL OR LOWER(sr.city) LIKE LOWER(CONCAT('%', :city, '%')))")
-    List<ServiceRequest> findServiceRequests(Status status, Priority priority, String city, Long createdBy);
+            "(CASE WHEN :isUser = false THEN true ELSE (:createdBy IS NULL OR sr.createdByUser = :createdBy) END) AND " +
+            "(:location IS NULL OR sr.location = :location)")
+    List<ServiceRequest> findServiceRequests(boolean isUser, Status status, Priority priority, Integer location, Long createdBy);
 }
